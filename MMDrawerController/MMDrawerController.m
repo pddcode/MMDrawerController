@@ -1361,7 +1361,9 @@ static inline CGFloat originXForDrawerOriginAndTargetOriginOffset(CGFloat origin
 
 #pragma mark - UIGestureRecognizerDelegate
 -(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
-    
+    if([touch.view isKindOfClass:[UISlider class]]){
+	return NO;
+    }
     if(self.openSide == MMDrawerSideNone){
         MMOpenDrawerGestureMode possibleOpenGestureModes = [self possibleOpenGestureModesForGestureRecognizer:gestureRecognizer
                                                                                                     withTouch:touch];
